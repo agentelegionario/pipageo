@@ -81,9 +81,13 @@ app.post('/pa', function (req, res) {
 app.put('/pa', function (req, res) {
    
     var id = validator.trim(validator.escape(req.param('id')));
-    var fullname = validator.trim(validator.escape(req.param('fullname')));
-    var email = validator.trim(validator.escape(req.param('email')));
-    var password = validator.trim(validator.escape(req.param('password')));
+    var codigo = validator.trim(validator.escape(req.param('codigo')));
+    var latitudePA = validator.trim(validator.escape(req.param('latitudePA')));
+    var longetudePA = validator.trim(validator.escape(req.param('longetudePA')));
+    var qtdePessoas = validator.trim(validator.escape(req.param('qtdePessoas')));
+    var responsavel = validator.trim(validator.escape(req.param('responsavel')));
+    var capacidade = validator.trim(validator.escape(req.param('capacidade')));
+     var cidade = validator.trim(validator.escape(req.param('cidade')));
     
     paController.update(id, fullname, email, password, function(resp) {
         res.jsonp(resp);
@@ -149,6 +153,52 @@ app.delete('/pipeiro/:id', function (req, res) {
     var id = validator.trim(validator.escape(req.param('id')));
 
     pipeiroController.delete(id, function(resp){
+        res.jsonp(resp);
+    });
+});
+
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+app.get('/manancial', function (req, res) {
+
+   manancialController.list(function(resp) {
+       res.jsonp(resp);
+   });
+
+});
+
+app.get('/manancial/:id', function (req, res) {
+
+    var id = validator.trim(validator.escape(req.param('id')));
+
+    manancialController.manancial(id, function(resp) {
+        res.jsonp(resp);
+    });
+
+});
+
+app.post('/manancial', function (req, res) {
+
+    var codigo = validator.trim(validator.escape(req.param('codigo')));
+    var latitude = validator.trim(validator.escape(req.param('latitude')));
+    var longitude = validator.trim(validator.escape(req.param('longitude')));
+    var nome = validator.trim(validator.escape(req.param('nome')));
+    var tipo = validator.trim(validator.escape(req.param('tipo')));
+    var cidade = validator.trim(validator.escape(req.param('cidade')));
+
+    pipeiroController.save(codigo, latitude, longitude, nome, tipo, cidade, function(resp) {
+        res.jsonp(resp);
+    });
+
+});
+
+
+app.delete('/manancial/:id', function (req, res) {
+
+    var id = validator.trim(validator.escape(req.param('id')));
+
+    manancialController.delete(id, function(resp){
         res.jsonp(resp);
     });
 });

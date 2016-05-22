@@ -12,14 +12,17 @@ db.on('erro', console.error.bind(console, 'Erro ao conectar ao banco')); //Apos 
 
 db.once('open', function () { // Quando a conexão for aberta realizar a criação do SCHEMA >> COLUNAS DO BANCO E AS PROPRIEDADES (TIPOS)
    
-    var userSchema = mongoose.Schema({
+    var paSchema = mongoose.Schema({
        
         placa: String,
-        geolocaPA: String,
-        geolocaPAGET: String,
+        latitudePA: Number,
+        LongetudePA: Number,
+        qtdePessoas: Number,
+        responsavel: Number,
+        capacidade: Number,
+        cidade: String,
         created_at: Date
-        
-        
+
     });
     
     var pipeiroSchema = mongoose.Schema({
@@ -31,11 +34,23 @@ db.once('open', function () { // Quando a conexão for aberta realizar a criaç�
         modeloCarro: String,
         cidade: String,
         created_at: Date
+    });
+
+     var manancialSchema = mongoose.Schema({
+
+        codigo: String,
+        latitude: Number,
+        longitude: Number,
+        nome: String,
+        tipo: String,
+        cidade: String,
+        created_at: Date
 
 
     });
-    exports.Pa = mongoose.model('pa', userSchema); // Definição do Model para acessar o User na aplicação com as funções do MONGOOSE
+    exports.Pa = mongoose.model('pa', paSchema); // Definição do Model para acessar o User na aplicação com as funções do MONGOOSE
     exports.Pipeiro = mongoose.model('Pipeiro', pipeiroSchema);
+    exports.Manancial = mongoose.model('Manancial', manancialSchema);
 });
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

@@ -1,6 +1,6 @@
 {
   "name": "wspipageo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Web Service PipaGeo",
   "main": "app.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "WebService",
     "PipaGeo"
   ],
-  "author": "Henning",
+  "author": "Henning - Alcides",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",

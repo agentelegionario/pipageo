@@ -10,7 +10,7 @@
     "WebService",
     "PipaGeo"
   ],
-  "author": "Henning - Alcides",
+  "author": "Henning - Alcides - Gleybson - Orlando",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",

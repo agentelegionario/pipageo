@@ -22,8 +22,20 @@ db.once('open', function () { // Quando a conexão for aberta realizar a criaç�
         
     });
     
-    exports.Pa = mongoose.model('User', userSchema); // Definição do Model para acessar o User na aplicação com as funções do MONGOOSE
-    
+    var pipeiroSchema = mongoose.Schema({
+
+        placa: String,
+        nomePipeiro: String,
+        capacidade: Number,
+        marcaCarro: String,
+        modeloCarro: String,
+        cidade: String,
+        created_at: Date
+
+
+    });
+    exports.Pa = mongoose.model('pa', userSchema); // Definição do Model para acessar o User na aplicação com as funções do MONGOOSE
+    exports.Pipeiro = mongoose.model('Pipeiro', pipeiroSchema);
 });
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

@@ -2,6 +2,7 @@
 var app = require('./config/app_config.js');
 
 var paController = require('./controller/paController.js');
+var pipeiroController = require('./controller/pipeiroController.js');
 
 var validator = require('validator');
 
@@ -106,3 +107,48 @@ app.delete('/pa/:id', function (req, res) {
 });
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+app.get('/pipeiro', function (req, res) {
+
+   pipeiroController.list(function(resp) {
+       res.jsonp(resp);
+   });
+
+});
+
+app.get('/pipeiro/:placa', function (req, res) {
+
+    var placa = validator.trim(validator.escape(req.param('placa')));
+
+    pipeiroController.pipeiro(placa, function(resp) {
+        res.jsonp(resp);
+    });
+
+});
+
+app.post('/pipeiro', function (req, res) {
+
+    var placa = validator.trim(validator.escape(req.param('placa')));
+    var nomePipeiro = validator.trim(validator.escape(req.param('nomePipeiro')));
+    var capacidade = validator.trim(validator.escape(req.param('capacidade')));
+    var marcaCarro = validator.trim(validator.escape(req.param('marcaCarro')));
+    var modeloCarro = validator.trim(validator.escape(req.param('modeloCarro')));
+    var cidade = validator.trim(validator.escape(req.param('cidade')));
+
+    pipeiroController.save(placa, nomePipeiro, capacidade, marcaCarro, modeloCarro, cidade, function(resp) {
+
+        res.jsonp(resp);
+    });
+
+});
+
+
+app.delete('/pipeiro/:id', function (req, res) {
+
+    var id = validator.trim(validator.escape(req.param('id')));
+
+    pipeiroController.delete(id, function(resp){
+        res.jsonp(resp);
+    });
+});

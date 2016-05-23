@@ -54,10 +54,18 @@ db.once('open', function () { // Quando a conexão for aberta realizar a criaç�
         idPa: String,
         created_at: Date
     });
+     var omSchema = mongoose.Schema({
+
+        idOm: Number,
+        nome: String,
+        sigla: String,
+        created_at: Date
+    });
     exports.Pa = mongoose.model('pa', paSchema); // Definição do Model para acessar o User na aplicação com as funções do MONGOOSE
     exports.Pipeiro = mongoose.model('pipeiro', pipeiroSchema);
     exports.Manancial = mongoose.model('manancial', manancialSchema);
-    exports.Rota = mongoose.model('rot  a', rotaSchema);
+    exports.Rota = mongoose.model('rota', rotaSchema);
+    exports.OM = mongoose.model('om', omSchema);
 });
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

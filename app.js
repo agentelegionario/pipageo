@@ -5,6 +5,8 @@ var paController = require('./controller/paController.js');
 var pipeiroController = require('./controller/pipeiroController.js');
 var rotaController = require('./controller/rotaController.js');
 var manancialController = require('./controller/manancialController.js');
+var omController = require('./controller/omController.js');
+
 
 var validator = require('validator');
 
@@ -240,6 +242,47 @@ app.delete('/manancial/:id', function (req, res) {
     var id = validator.trim(validator.escape(req.param('id')));
 
     rotaController.delete(id, function(resp){
+        res.jsonp(resp);
+    });
+});
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+app.get('/om', function (req, res) {
+
+   omController.list(function(resp) {
+       res.jsonp(resp);
+   });
+
+});
+
+app.get('/om/:id', function (req, res) {
+
+    var id = validator.trim(validator.escape(req.param('id')));
+
+    omController.om(id, function(resp) {
+        res.jsonp(resp);
+    });
+
+});
+
+app.post('/om', function (req, res) {
+
+    var idOm = validator.trim(validator.escape(req.param('idOm')));
+    var nome = validator.trim(validator.escape(req.param('nome')));
+    var sigla = validator.trim(validator.escape(req.param('sigla')));
+
+    omController.save(idOm, nome, sigla, function(resp) {
+        res.jsonp(resp);
+    });
+
+});
+
+
+app.delete('/manancial/:id', function (req, res) {
+
+    var id = validator.trim(validator.escape(req.param('id')));
+
+    omController.delete(id, function(resp){
         res.jsonp(resp);
     });
 });

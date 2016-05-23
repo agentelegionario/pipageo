@@ -16,7 +16,7 @@ db.once('open', function () { // Quando a conexão for aberta realizar a criaç�
        
         placa: String,
         latitudePA: Number,
-        LongetudePA: Number,
+        longetudePA: Number,
         qtdePessoas: Number,
         responsavel: Number,
         capacidade: Number,
@@ -57,7 +57,7 @@ db.once('open', function () { // Quando a conexão for aberta realizar a criaç�
     exports.Pa = mongoose.model('pa', paSchema); // Definição do Model para acessar o User na aplicação com as funções do MONGOOSE
     exports.Pipeiro = mongoose.model('pipeiro', pipeiroSchema);
     exports.Manancial = mongoose.model('manancial', manancialSchema);
-    exports.Rota = mongoose.model('rota', rotaSchema);
+    exports.Rota = mongoose.model('rot  a', rotaSchema);
 });
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

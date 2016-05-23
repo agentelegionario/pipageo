@@ -26,7 +26,7 @@ db.Pa.find({}, function(error, pa) {
 // função de listar user----------------------------------------------
 exports.pa = function(placa, callback){
 
-     db.Pa.findById(placa, function(error, pa) {
+     db.Pa.find({placa: placa}, function(error, pa) {
 
         if(error) {
 
@@ -42,19 +42,19 @@ exports.pa = function(placa, callback){
 
 
 // função de salvar----------------------------------------------------
-exports.save = function(codigo, latitudePA, LongetudePA,qtdePessoas, responsavel, capacidade, cidade,  callback){
+exports.save = function(placa, latitudePA, LongetudePA,qtdePessoas, responsavel, capacidade, cidade,  callback){
 
 new db.Pa({
 
-    'codigo': codigo,
+    'placa': placa,
     'latitudePA': latitudePA,
     'LongetudePA': LongetudePA,
     'qtdePessoas': qtdePessoas,
-    'responsavel': Number,
+    'responsavel': responsavel,
     'capacidade': capacidade,
     'cidade': cidade,
-    'idRota': Number,
     'created_at': new Date
+
     }).save(function(error, pa) {
 
         if(error) {

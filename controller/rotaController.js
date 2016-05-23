@@ -12,7 +12,7 @@ db.Rota.find({}, function(error, rota) {
 
       } else {
 
-          callback({error:' erro ligado'});
+          callback({rota});
       }
 
    });
@@ -23,9 +23,9 @@ db.Rota.find({}, function(error, rota) {
 
 
 // função de selecionar
-exports.rota = function(id, callback){
+exports.rota = function(idPa, callback){
 
-     db.Rota.findById(id, function(error, rota) {
+     db.Rota.findById(idPa, function(error, rota) {
 
         if(error) {
             callback({error: 'Não foi possivel retornar o rota'});

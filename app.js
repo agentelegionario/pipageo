@@ -1,4 +1,4 @@
-    //--------------------------------Definindo minhas variáveis a ser utilizadas-----------------------------------------------
+//--------------------------------Definindo minhas variáveis a ser utilizadas-----------------------------------------------
 var app = require('./config/app_config.js');
 
 var paController = require('./controller/paController.js');
@@ -15,6 +15,8 @@ var validator = require('validator');
 
                     //Definindo meus METODOS para CONSUMO NO WEBSERVICE
 
+
+
 //----------------------------ACESSO RAIZ DA APLICAÇÃO COM MÉTODO GET------------------------------------------------------------------------
 
 app.get('/', function (req, res) {
@@ -22,12 +24,11 @@ app.get('/', function (req, res) {
    res.end('OK NO AR VAMOS COMEÇAR!');
     
 });
+//-------------------------------------------------------------------------------------------------------------------
+
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-//------------------------------------ACESSO AOS USUÁRIOS COM MÉTODO GET ------------------------------------------------------
+//------------------------------------ACESSO AOS CONTEUDOS PRINCIPAIS COM MÉTODO GET ------------------------------------------------------
 
 app.get('/pa', function (req, res) {
    
@@ -40,7 +41,7 @@ app.get('/pa', function (req, res) {
 //-----------------------------------------------------------------------------------------------------------------------------
 
 
-//------------------------------------ACESSO AOS USUÁRIOS POR ID COM MÉTODO GET -----------------------------------------------
+//------------------------------------ACESSO AOS METODOS POR ID COM MÉTODO GET -----------------------------------------------
 
 app.get('/pa/:placa', function (req, res) {
    
@@ -51,33 +52,31 @@ app.get('/pa/:placa', function (req, res) {
     });
     
 });
+//-------------------------------------------------------------------------------------------------------------------
 
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-//------------------------------------ENVIANDO USUÁRIO COM MÉTODO POST -----------------------------------------------
+//------------------------------------ENVIANDO CAMPOS COM MÉTODO POST -----------------------------------------------
 
 app.post('/pa', function (req, res) {
    
     var placa = validator.trim(validator.escape(req.param('placa')));
-    var geolocaPA = validator.trim(validator.escape(req.param('geolocaPA')));
-    var geolocaPAGET = validator.trim(validator.escape(req.param('geolocaPAGET')));
+    var latitudePA = validator.trim(validator.escape(req.param('latitudePA')));
+    var longetudePA = validator.trim(validator.escape(req.param('longetudePA')));
+    var qtdePessoas = validator.trim(validator.escape(req.param('qtdePessoas')));
+    var responsavel = validator.trim(validator.escape(req.param('responsavel')));
+    var capacidade = validator.trim(validator.escape(req.param('capacidade')));
+    var cidade = validator.trim(validator.escape(req.param('cidade')));
     
-    paController.save(placa, geolocaPA, geolocaPAGET, function(resp) {
+    paController.save(placa, latitudePA, longetudePA, qtdePessoas, responsavel, capacidade, cidade, function(resp) {
         
         res.jsonp(resp);
     });
     
 });
-
+//-------------------------------------------------------------------------------------------------------------------
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-
 //------------------------------------ATUALIZANDO USUÁRIO COM MÉTODO PUT -----------------------------------------------
 
 app.put('/pa', function (req, res) {
@@ -98,7 +97,7 @@ app.put('/pa', function (req, res) {
 //-------------------------------------------------------------------------------------------------------------------
 
 
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 //------------------------------------DELETANDO USUÁRIO COM MÉTODO DELETE -----------------------------------------------
 
 app.delete('/pa/:id', function (req, res) {
@@ -172,9 +171,9 @@ app.get('/rota', function (req, res) {
 
 app.get('/rota/:id', function (req, res) {
 
-    var id = validator.trim(validator.escape(req.param('id')));
+    var idPa = validator.trim(validator.escape(req.param('id')));
 
-    rotaController.list(id, function(resp) {
+    rotaController.list(idPa, function(resp) {
         res.jsonp(resp);
     });
 

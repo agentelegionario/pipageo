@@ -1,8 +1,10 @@
-//--------------------------------Definindo minhas variáveis a ser utilizadas-----------------------------------------------
+    //--------------------------------Definindo minhas variáveis a ser utilizadas-----------------------------------------------
 var app = require('./config/app_config.js');
 
 var paController = require('./controller/paController.js');
 var pipeiroController = require('./controller/pipeiroController.js');
+var rotaController = require('./controller/rotaController.js');
+var manancialController = require('./controller/manancialController.js');
 
 var validator = require('validator');
 
@@ -89,7 +91,7 @@ app.put('/pa', function (req, res) {
     var capacidade = validator.trim(validator.escape(req.param('capacidade')));
      var cidade = validator.trim(validator.escape(req.param('cidade')));
     
-    paController.update(id, fullname, email, password, function(resp) {
+    paController.update(id, codigo, responsavel, capacidade, function(resp) {
         res.jsonp(resp);
     });
 });
@@ -172,7 +174,7 @@ app.get('/rota/:id', function (req, res) {
 
     var id = validator.trim(validator.escape(req.param('id')));
 
-    rotaController.manancial(id, function(resp) {
+    rotaController.list(id, function(resp) {
         res.jsonp(resp);
     });
 
@@ -184,7 +186,7 @@ app.post('/rota', function (req, res) {
     var idManancial = validator.trim(validator.escape(req.param('idManancial')));
     var idPa = validator.trim(validator.escape(req.param('idPa')));
 
-    pipeiroController.save(codigo, latitude, longitude, nome, tipo, cidade, function(resp) {
+    rotaController.save(distancia, idManancial, idPa, function(resp) {
         res.jsonp(resp);
     });
 
@@ -203,9 +205,9 @@ app.delete('/rota/:id', function (req, res) {
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
 
-app.get('/rota', function (req, res) {
+app.get('/manancial', function (req, res) {
 
-   rotaController.list(function(resp) {
+   manancialController.list(function(resp) {
        res.jsonp(resp);
    });
 
@@ -215,26 +217,26 @@ app.get('/manancial/:id', function (req, res) {
 
     var id = validator.trim(validator.escape(req.param('id')));
 
-    rotaController.rota(id, function(resp) {
+    manancialController.manancial(id, function(resp) {
         res.jsonp(resp);
     });
 
 });
 
-app.post('/rota', function (req, res) {
+app.post('/manancial', function (req, res) {
 
     var distancia = validator.trim(validator.escape(req.param('distancia')));
     var idManancial = validator.trim(validator.escape(req.param('idManancial')));
     var idPa = validator.trim(validator.escape(req.param('idPa')));
 
-    pipeiroController.save(codigo, latitude, longitude, nome, tipo, cidade, function(resp) {
+    rotaController.save(distancia, idPa, idManancial, function(resp) {
         res.jsonp(resp);
     });
 
 });
 
 
-app.delete('/rota/:id', function (req, res) {
+app.delete('/manancial/:id', function (req, res) {
 
     var id = validator.trim(validator.escape(req.param('id')));
 

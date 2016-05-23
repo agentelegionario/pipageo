@@ -47,7 +47,7 @@ db.once('open', function () { // Quando a conexão for aberta realizar a criaç�
         created_at: Date
     });
 
-    var rotalSchema = mongoose.Schema({
+    var rotaSchema = mongoose.Schema({
 
         distancia: Number,
         idManancial: String,
@@ -55,9 +55,9 @@ db.once('open', function () { // Quando a conexão for aberta realizar a criaç�
         created_at: Date
     });
     exports.Pa = mongoose.model('pa', paSchema); // Definição do Model para acessar o User na aplicação com as funções do MONGOOSE
-    exports.Pipeiro = mongoose.model('Pipeiro', pipeiroSchema);
-    exports.Manancial = mongoose.model('Manancial', manancialSchema);
-    exports.Rota = mongoose.model('Rota', rotalSchema);
+    exports.Pipeiro = mongoose.model('pipeiro', pipeiroSchema);
+    exports.Manancial = mongoose.model('manancial', manancialSchema);
+    exports.Rota = mongoose.model('rota', rotaSchema);
 });
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

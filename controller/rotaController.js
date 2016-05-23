@@ -4,7 +4,7 @@ var db = require('../config/db_config.js');
 // função de de listar-----------------------------------------------
 exports.list = function(callback){
 
-db.Manancial.find({}, function(error, rota) {
+db.Rota.find({}, function(error, rota) {
 
       if(error) {
 
@@ -12,7 +12,7 @@ db.Manancial.find({}, function(error, rota) {
 
       } else {
 
-          callback(rota);
+          callback({error:' erro ligado'});
       }
 
    });
@@ -30,7 +30,7 @@ exports.rota = function(id, callback){
         if(error) {
             callback({error: 'Não foi possivel retornar o rota'});
         } else {
-            callback(manancial);
+            callback(rota);
         }
 
     });
@@ -61,15 +61,15 @@ new db.Rota({
 
 
 // função de atualizar ------------------------------------------------
-exports.update = function(distancia, idManancial, idPa, callback){
+exports.update = function(id, distancia, idManancial, idPa, callback){
 
     db.Rota.findById(id, function(error, rota) {
 
-        if(distancia) manancial.distancia = distancia;
-        if(idManancial) manancial.idManancial = idManancial;
-        if(idPa) manancial.idPa = idPa;
+        if(distancia) distancia.distancia = distancia;
+        if(idManancial) idManancial.idManancial = idManancial;
+        if(idPa) idPa.idPa = idPa;
 
-        pipeiro.save(function(error, rota) {
+        rota.save(function(error, rota) {
 
         if(error){
             callback({error: 'Não foi possivel retornar o rota'});
@@ -90,7 +90,7 @@ exports.delete = function(id, callback){
     db.Rota.findById(id, function(error, rota) {
 
         if(!error) {
-            manancial.remove(function(error) {
+            rota.remove(function(error) {
                 if(!error) {
                     callback({error: 'Rota ' +id+ ' excluido com sucesso' });
                 }

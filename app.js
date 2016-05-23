@@ -160,9 +160,52 @@ app.delete('/pipeiro/:id', function (req, res) {
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-app.get('/manancial', function (req, res) {
+app.get('/rota', function (req, res) {
 
-   manancialController.list(function(resp) {
+   rotaController.list(function(resp) {
+       res.jsonp(resp);
+   });
+
+});
+
+app.get('/rota/:id', function (req, res) {
+
+    var id = validator.trim(validator.escape(req.param('id')));
+
+    rotaController.manancial(id, function(resp) {
+        res.jsonp(resp);
+    });
+
+});
+
+app.post('/rota', function (req, res) {
+
+    var distancia = validator.trim(validator.escape(req.param('distancia')));
+    var idManancial = validator.trim(validator.escape(req.param('idManancial')));
+    var idPa = validator.trim(validator.escape(req.param('idPa')));
+
+    pipeiroController.save(codigo, latitude, longitude, nome, tipo, cidade, function(resp) {
+        res.jsonp(resp);
+    });
+
+});
+
+
+app.delete('/rota/:id', function (req, res) {
+
+    var id = validator.trim(validator.escape(req.param('id')));
+
+    rotaController.delete(id, function(resp){
+        res.jsonp(resp);
+    });
+});
+
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+
+app.get('/rota', function (req, res) {
+
+   rotaController.list(function(resp) {
        res.jsonp(resp);
    });
 
@@ -172,20 +215,17 @@ app.get('/manancial/:id', function (req, res) {
 
     var id = validator.trim(validator.escape(req.param('id')));
 
-    manancialController.manancial(id, function(resp) {
+    rotaController.rota(id, function(resp) {
         res.jsonp(resp);
     });
 
 });
 
-app.post('/manancial', function (req, res) {
+app.post('/rota', function (req, res) {
 
-    var codigo = validator.trim(validator.escape(req.param('codigo')));
-    var latitude = validator.trim(validator.escape(req.param('latitude')));
-    var longitude = validator.trim(validator.escape(req.param('longitude')));
-    var nome = validator.trim(validator.escape(req.param('nome')));
-    var tipo = validator.trim(validator.escape(req.param('tipo')));
-    var cidade = validator.trim(validator.escape(req.param('cidade')));
+    var distancia = validator.trim(validator.escape(req.param('distancia')));
+    var idManancial = validator.trim(validator.escape(req.param('idManancial')));
+    var idPa = validator.trim(validator.escape(req.param('idPa')));
 
     pipeiroController.save(codigo, latitude, longitude, nome, tipo, cidade, function(resp) {
         res.jsonp(resp);
@@ -194,11 +234,11 @@ app.post('/manancial', function (req, res) {
 });
 
 
-app.delete('/manancial/:id', function (req, res) {
+app.delete('/rota/:id', function (req, res) {
 
     var id = validator.trim(validator.escape(req.param('id')));
 
-    manancialController.delete(id, function(resp){
+    rotaController.delete(id, function(resp){
         res.jsonp(resp);
     });
 });
